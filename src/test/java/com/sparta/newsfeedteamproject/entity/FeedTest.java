@@ -2,6 +2,7 @@ package com.sparta.newsfeedteamproject.entity;
 
 import com.sparta.newsfeedteamproject.dto.feed.FeedReqDto;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
@@ -24,6 +25,7 @@ class FeedTest {
     }
 
     @Test
+    @DisplayName("피드 업데이트 테스트")
     public void updateTest(){
         FeedReqDto updateMockFeed = new FeedReqDto();
         updateMockFeed.setContents("업데이트한 피드 내용 ~");
@@ -32,12 +34,14 @@ class FeedTest {
     }
 
     @Test
+    @DisplayName("피드 좋아요수 증가 테스트")
     public void increaseLikesTest(){
         feed.increaseLikes();
         assertEquals(1, feed.getLikes());
     }
 
     @Test
+    @DisplayName("피드 좋아요수 감소 테스트")
     public void decreaseLikesTest(){
         feed.setLikes(2L);
         feed.decreaseLikes();
@@ -45,6 +49,7 @@ class FeedTest {
     }
 
     @Test
+    @DisplayName("좋아요수 음수 불가 테스트")
     public void validateLikesTest(){
         feed.setLikes(0L);
         Exception exception = assertThrows(IllegalArgumentException.class, () -> feed.validateLikes());
