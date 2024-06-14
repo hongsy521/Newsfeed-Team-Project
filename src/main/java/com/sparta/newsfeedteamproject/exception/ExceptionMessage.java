@@ -14,7 +14,8 @@ public enum ExceptionMessage {
     NON_EXISTENT_ELEMENT("해당 요소가 존재하지 않습니다."),
     UNAUTHORIZED_USER("미인증된 회원입니다."),
     AUTHENTICATED_USER("인증이 완료된 사용자입니다."),
-    EXPIRATION_TOKEN("만료된 토큰입니다. 다시 로그인해주세요.");
+    EXPIRATION_TOKEN("만료된 토큰입니다. 다시 로그인해주세요."),
+    INVALID_REQUEST("유효하지 않은 요청입니다.");
 
     private String message;
 
