@@ -4,8 +4,10 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class UserAuthReqDto {
     @NotBlank(message = "[username:blank] 사용자 아이디를 작성해주세요!")
     @Size(min = 10, max = 20, message = "[username:size] 10자 이상 20자 이하로 작성해주세요!")
