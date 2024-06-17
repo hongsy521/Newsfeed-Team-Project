@@ -4,8 +4,10 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class UpdateReqDto {
     @NotBlank(message = "[password:blank] 비밀번호를 작성해주세요!")
     @Size(min = 10, message = "[password:size] 10자 이상으로 작성해주세요!")

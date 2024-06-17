@@ -1,15 +1,19 @@
 package com.sparta.newsfeedteamproject.entity;
 
 import com.sparta.newsfeedteamproject.dto.feed.FeedReqDto;
+import com.sparta.newsfeedteamproject.exception.ExceptionMessage;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
+@Setter
 @Table(name = "NewsFeed") // 매핑할 테이블의 이름을 지정
 @NoArgsConstructor
 public class Feed extends Timestamp {
@@ -19,6 +23,7 @@ public class Feed extends Timestamp {
     private Long id;
     @Column(name = "contents", nullable = false)
     private String contents;
+    @Min(0)
     @Column(name = "likes", nullable = false)
     private Long likes;
     @ManyToOne
@@ -45,7 +50,12 @@ public class Feed extends Timestamp {
     }
 
     public void decreaseLikes() {
-
+        validateLikes();
         this.likes--;
+    }
+    public void validateLikes(){
+        if(this.likes == 0){
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_REQUEST.getExceptionMessage());
+        }
     }
 }

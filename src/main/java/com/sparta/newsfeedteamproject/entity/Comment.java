@@ -1,12 +1,15 @@
 package com.sparta.newsfeedteamproject.entity;
 
 import com.sparta.newsfeedteamproject.dto.comment.CommentReqDto;
+import com.sparta.newsfeedteamproject.exception.ExceptionMessage;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter
+@Setter
 @Table(name = "comment")
 @NoArgsConstructor
 public class Comment extends Timestamp {
@@ -41,6 +44,13 @@ public class Comment extends Timestamp {
     }
 
     public void decreaseLikes() {
+        validateLikes();
         this.likes--;
+    }
+
+    public void validateLikes(){
+        if(this.likes == 0) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_REQUEST.getExceptionMessage());
+        }
     }
 }
